@@ -5,10 +5,33 @@ import java.util.Stack;
 
 public class StartGameController {
 	private static final int TABLEAUS = 7;
+	
+	private int sizeDeck;
+	private int sizeWaste;
+		
+	public StartGameController(){
+			sizeDeck = 24;
+			sizeWaste = 0;
+	}
+	
+	public int getSizeDeck() {
+		return sizeDeck;
+	}
+
+	public void setSizeDeck(int sizeDeck) {
+		this.sizeDeck = sizeDeck;
+	}
+
+	public int getSizeWaste() {
+		return sizeWaste;
+	}
+
+	public void setSizeWaste(int sizeWaste) {
+		this.sizeWaste = sizeWaste;
+	}
 
 	public int sizeWaste() {
-		// TODO Auto-generated method stub
-		return 0;
+		return sizeWaste;
 	}
 
 	public ArrayList<Integer> sizeFoundations() {
@@ -20,8 +43,11 @@ public class StartGameController {
 	}
 
 	public int sizeDeck() {
-		return 24;
+		return sizeDeck;
 	}
+	
+	
+	
 
 	public ArrayList<Stack<Card>> uncoveredCardsStackTableaus() {
 		ArrayList<Stack<Card>> uncoveredCardsStackTableaus = new ArrayList<Stack<Card>>();
