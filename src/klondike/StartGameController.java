@@ -1,6 +1,7 @@
 package klondike;
 
 import java.util.ArrayList;
+import java.util.Stack;
 
 public class StartGameController {
 
@@ -15,6 +16,21 @@ public class StartGameController {
 					sizeFoundations.add(0);
 			}
 			return sizeFoundations;
+	}
+
+	public int sizeDeck() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	public ArrayList<Stack<Card>> uncoveredCardsStackTableaus() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public ArrayList<Integer> sizeCoveredCardsTableaus() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
