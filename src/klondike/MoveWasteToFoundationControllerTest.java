@@ -24,18 +24,43 @@ public class MoveWasteToFoundationControllerTest {
 			int foundationSize;
 			int sizeWaste;
 									
-			startGameController.addCardToWaste(new Card(2, CardSuit.SPADES));		
-			startGameController.addCardToFoundation(FOUNDATION, new Card(1, CardSuit.SPADES));
+			startGameController.addCardToWaste(new Card(2, CardSuit.SPADES));	
 			
+			startGameController.addCardToFoundation(FOUNDATION, new Card(1, CardSuit.SPADES));		
 			Stack<Card> foundation = startGameController.getFoundationCards(FOUNDATION);
 			
 			foundationSize = foundation.size();
 			sizeWaste = startGameController.sizeWaste();
+			assertEquals(1, startGameController.sizeWaste());
 			
 			assertTrue(moveWasteToFoundationController.move(FOUNDATION));
 			
 			assertEquals(sizeWaste-1, startGameController.sizeWaste());
 			assertEquals(foundationSize+1, startGameController.getFoundationCards(FOUNDATION).size());
 		}
+		
+		@Test
+	 	public void moveNoCardInWasteOneCardFoundationTest(){
+									
+			startGameController.addCardToWaste(new Card(1, CardSuit.SPADES));
+			moveWasteToFoundationController.move(FOUNDATION);
+			
+			Stack<Card> foundationCard = startGameController.getFoundationCards(FOUNDATION);
+			Card lastFoundationCard = foundationCard.peek();
+			
+			assertEquals(1,lastFoundationCard.getCard());
+						
+			assertEquals(0,startGameController.sizeWaste());
+		
+	
+	 	}
+		
+		@Test
+	 	public void moveNoCardInWasteTest(){
+			// Se quiere mover a foundation sin tener cartas en waste
+									
+			assertFalse(moveWasteToFoundationController.move(FOUNDATION));
+	
+	 	}
 
 }

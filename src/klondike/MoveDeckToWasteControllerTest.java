@@ -13,24 +13,27 @@ public class MoveDeckToWasteControllerTest {
 	public void moveTest() {
 		int sizeDeck, sizeWaste;
 		startGameController = new StartGameController();
+		assertEquals(startGameController.sizeDeck(), 24 );
 		moveDeckToWasteController = new MoveDeckToWasteController(startGameController);
 			
 		if( startGameController.sizeDeck() >= 3){
 			sizeDeck = startGameController.sizeDeck();
 			sizeWaste = startGameController.sizeWaste();
+			assertEquals(startGameController.sizeWaste(), 0 );
 			moveDeckToWasteController.move();
 			assertEquals(startGameController.sizeDeck(), (sizeDeck - 3) );
 			assertEquals(startGameController.sizeWaste(), (sizeWaste + 3) );
 		}
-		
+		else
 		if( startGameController.sizeDeck() > 0){
-			startGameController.setSizeDeck(1);
-			sizeDeck = startGameController.sizeDeck();
-			sizeWaste = startGameController.sizeWaste();
-			moveDeckToWasteController.move();
-			assertEquals(startGameController.sizeDeck(), 0);
-			assertEquals(startGameController.sizeWaste(), (sizeWaste + sizeDeck));
+				startGameController.setSizeDeck(1);
+				sizeDeck = startGameController.sizeDeck();
+				sizeWaste = startGameController.sizeWaste();
+				moveDeckToWasteController.move();
+				assertEquals(startGameController.sizeDeck(), 0);
+				assertEquals(startGameController.sizeWaste(), (sizeWaste + sizeDeck));
 		}
+		
 		
 		if( startGameController.sizeDeck() == 0){
 				startGameController.setSizeDeck(0);

@@ -12,8 +12,10 @@ public class MoveWasteToFoundationController {
 
 		public boolean move(int foundation) {
 			
-					Card wasteCard = startGameController.oneCardInWaste();
+					if (startGameController.getSizeWaste() == 0) return false;
 					
+					Card wasteCard = startGameController.oneCardFromWaste();
+										
 					Stack<Card> foundationCard = startGameController.getFoundationCards(foundation);
 					if(foundationCard.size() > 0){
 						Card lastFoundationCard = foundationCard.peek();
@@ -27,6 +29,7 @@ public class MoveWasteToFoundationController {
 					else 
 					if(wasteCard.getCard() == 1){
 						startGameController.addCardToFoundation(foundation, wasteCard);
+						startGameController.removeCardFromWaste();
 						return true;
 					}
 					

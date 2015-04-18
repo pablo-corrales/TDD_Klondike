@@ -23,12 +23,14 @@ public class StartGameController {
 			for(int i = 0; i < FOUNDATIONS; i++){
 						stackFoundations.add(new Stack<Card>());
 			}
-			setStackWaste(new Stack<Card>());
+			this.setStackWaste(new Stack<Card>());
 	}
 	
 
-	public void setSizeDeck(int sizeDeck) {
-		this.sizeDeck = sizeDeck;
+	
+
+	public int getSizeWaste() {
+		return sizeWaste;
 	}
 
 
@@ -43,8 +45,13 @@ public class StartGameController {
 	public int sizeDeck() {
 		return sizeDeck;
 	}
+	
+	public void setSizeDeck(int sizeDeck) {
+		this.sizeDeck = sizeDeck;
+	}
 
-	public Card oneCardInWaste() {
+
+	public Card oneCardFromWaste() {
 		return stackWaste.peek();
 	}
 	
@@ -78,6 +85,7 @@ public class StartGameController {
 
 	public void addCardToWaste(Card card) {
 		stackWaste.push(card);
+		sizeWaste = stackWaste.size();
 		
 	}
 	
@@ -87,7 +95,7 @@ public class StartGameController {
 
 
 	public void addCardToFoundation(int foundation, Card card) {
-		this.getFoundationCards(foundation).add(card);
+		this.getFoundationCards(foundation).push(card);
 		
 	}
 
@@ -101,9 +109,7 @@ public class StartGameController {
 		this.stackWaste = stackWaste;
 	}
 	
-	public int getSizeWaste() {
-		return sizeWaste;
-	}
+	
 
 
 }
