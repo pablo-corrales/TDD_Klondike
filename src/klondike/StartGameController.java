@@ -14,17 +14,11 @@ public class StartGameController {
 			sizeWaste = 0;
 	}
 	
-	public int getSizeDeck() {
-		return sizeDeck;
-	}
 
 	public void setSizeDeck(int sizeDeck) {
 		this.sizeDeck = sizeDeck;
 	}
 
-	public int getSizeWaste() {
-		return sizeWaste;
-	}
 
 	public void setSizeWaste(int sizeWaste) {
 		this.sizeWaste = sizeWaste;
@@ -32,6 +26,10 @@ public class StartGameController {
 
 	public int sizeWaste() {
 		return sizeWaste;
+	}
+	
+	public int sizeDeck() {
+		return sizeDeck;
 	}
 
 	public ArrayList<Integer> sizeFoundations() {
@@ -42,13 +40,7 @@ public class StartGameController {
 			return sizeFoundations;
 	}
 
-	public int sizeDeck() {
-		return sizeDeck;
-	}
 	
-	
-	
-
 	public ArrayList<Stack<Card>> uncoveredCardsStackTableaus() {
 		ArrayList<Stack<Card>> uncoveredCardsStackTableaus = new ArrayList<Stack<Card>>();
 		for (int i = 0; i < TABLEAUS; i++) {
