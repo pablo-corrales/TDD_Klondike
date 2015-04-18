@@ -9,9 +9,17 @@ public class MoveDeckToWasteController {
 			}
 		
 			public void move() {
+				int sizeDeck = startGameController.sizeDeck();
+		 		int sizeWaste = startGameController.sizeWaste();
 				
-				startGameController.setSizeDeck(startGameController.sizeDeck() - 3);
-				startGameController.setSizeWaste(startGameController.sizeWaste() + 3);
+				if( sizeDeck >= 3){
+								startGameController.setSizeDeck(sizeDeck - 3);
+								startGameController.setSizeWaste(sizeWaste + 3);
+				}
+				else if( sizeDeck > 0){
+								startGameController.setSizeDeck(0);
+								startGameController.setSizeWaste(sizeWaste + sizeDeck);
+				}
 				
 			}
 
