@@ -1,5 +1,7 @@
 package klondike;
 
+import java.util.Stack;
+
 public class MoveWasteToFoundationController {
 		private StartGameController startGameController;
 	
@@ -9,8 +11,27 @@ public class MoveWasteToFoundationController {
 		}
 
 		public boolean move(int foundation) {
-			// TODO Auto-generated method stub
-			return true;
+			
+					Card wasteCard = startGameController.oneCardInWaste();
+					
+					Stack<Card> foundationCard = startGameController.getFoundationCards(foundation);
+					if(foundationCard.size() > 0){
+						Card lastFoundationCard = foundationCard.peek();
+						if( (wasteCard.getCard() == lastFoundationCard.getCard() + 1) 
+								&& (wasteCard.getCardSuit() == lastFoundationCard.getCardSuit())){
+							startGameController.addCardToFoundation(foundation, wasteCard);
+							startGameController.removeCardFromWaste();
+							return true;
+						}
+					}
+					else 
+					if(wasteCard.getCard() == 1){
+						startGameController.addCardToFoundation(foundation, wasteCard);
+						return true;
+					}
+					
+					return false;
+			
 		}
 	
 		
