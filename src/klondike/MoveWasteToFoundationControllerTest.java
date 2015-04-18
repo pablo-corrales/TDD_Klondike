@@ -24,17 +24,18 @@ public class MoveWasteToFoundationControllerTest {
 			int foundationSize;
 			int sizeWaste;
 									
-			startGameController.addCardToWaste(new Card(6, CardSuit.SPADES));		
-			startGameController.addCardToFoundation(FOUNDATION, new Card(1, CardSuit.HEARTS));
+			startGameController.addCardToWaste(new Card(2, CardSuit.SPADES));		
+			startGameController.addCardToFoundation(FOUNDATION, new Card(1, CardSuit.SPADES));
 			
 			Stack<Card> foundation = startGameController.getFoundationCards(FOUNDATION);
 			
-			foundationSize = foundation.size() + 1;
-			sizeWaste = startGameController.sizeWaste() - 1;
+			foundationSize = foundation.size();
+			sizeWaste = startGameController.sizeWaste();
 			
 			assertTrue(moveWasteToFoundationController.move(FOUNDATION));
-			assertEquals(sizeWaste, startGameController.sizeWaste());
-			assertEquals(foundationSize, startGameController.getFoundationCards(FOUNDATION).size());
+			
+			assertEquals(sizeWaste-1, startGameController.sizeWaste());
+			assertEquals(foundationSize+1, startGameController.getFoundationCards(FOUNDATION).size());
 		}
 
 }

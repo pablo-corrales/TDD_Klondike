@@ -9,7 +9,6 @@ public class StartGameController {
 	private static final int SIZE_WASTE = 0;
 	private static final int TABLEAUS = 7;
 	private static final int FOUNDATIONS = 4;
-	private static final int ONECARD = 1;
 	private ArrayList<Stack<Card>> stackFoundations;
 	private Stack<Card> stackWaste;
 	
@@ -46,7 +45,7 @@ public class StartGameController {
 	}
 
 	public Card oneCardInWaste() {
-		return new Card(ONECARD);
+		return stackWaste.peek();
 	}
 	
 	public ArrayList<Integer> sizeFoundations() {
