@@ -2,47 +2,63 @@ package klondike;
 
 import static org.junit.Assert.*;
 
+import org.junit.Before;
 import org.junit.Test;
 
 public class MoveDeckToWasteControllerTest {
 	
 	private StartGameController startGameController;
 	private MoveDeckToWasteController moveDeckToWasteController;	
+	
+	@Before
+ 	public void before(){
+ 		startGameController = new StartGameController();
+ 		moveDeckToWasteController = new MoveDeckToWasteController(startGameController);
+ 	}
 
 	@Test
 	public void moveTest() {
-		int sizeDeck, sizeWaste;
-		startGameController = new StartGameController();
-		assertEquals(startGameController.sizeDeck(), 24 );
-		moveDeckToWasteController = new MoveDeckToWasteController(startGameController);
-			
-		if( startGameController.sizeDeck() >= 3){
-			sizeDeck = startGameController.sizeDeck();
-			sizeWaste = startGameController.sizeWaste();
-			assertEquals(startGameController.sizeWaste(), 0 );
-			moveDeckToWasteController.move();
-			assertEquals(startGameController.sizeDeck(), (sizeDeck - 3) );
-			assertEquals(startGameController.sizeWaste(), (sizeWaste + 3) );
-		}
-		else
-		if( startGameController.sizeDeck() > 0){
-				startGameController.setSizeDeck(1);
-				sizeDeck = startGameController.sizeDeck();
-				sizeWaste = startGameController.sizeWaste();
-				moveDeckToWasteController.move();
-				assertEquals(startGameController.sizeDeck(), 0);
-				assertEquals(startGameController.sizeWaste(), (sizeWaste + sizeDeck));
-		}
+				
+		assertEquals(startGameController.sizeDeck(), 24 );		
 		
-		
-		if( startGameController.sizeDeck() == 0){
-				startGameController.setSizeDeck(0);
-				sizeWaste = startGameController.sizeWaste();
-				moveDeckToWasteController.move();
-				assertEquals(startGameController.sizeDeck(), 0);
-				assertEquals(startGameController.sizeWaste(), sizeWaste);
-		
-		}
 	}
+	
+	
+	public void moveTestSizeDeckGreatThanThree()
+	{
+		int sizeDeck, sizeWaste;
+		sizeDeck = startGameController.sizeDeck();
+		sizeWaste = startGameController.sizeWaste();
+		
+		assertEquals(startGameController.sizeWaste(), 0 );
+		moveDeckToWasteController.move();
+		assertEquals(startGameController.sizeDeck(), (sizeDeck - 3) );
+		assertEquals(startGameController.sizeWaste(), (sizeWaste + 3) );
+	}
+	
+	public void moveTestSizeDeckGreatThanZero()
+	{
+		int sizeDeck, sizeWaste;
+		
+		startGameController.setSizeDeck(1);
+		sizeDeck = startGameController.sizeDeck();
+		sizeWaste = startGameController.sizeWaste();
+		moveDeckToWasteController.move();
+		assertEquals(startGameController.sizeDeck(), 0);
+		assertEquals(startGameController.sizeWaste(), (sizeWaste + sizeDeck));
+	}
+	
+	public void moveTestSizeDeckEqualsZero()
+	{
+		int sizeWaste;
+		startGameController.setSizeDeck(0);
+		sizeWaste = startGameController.sizeWaste();
+		moveDeckToWasteController.move();
+		assertEquals(startGameController.sizeDeck(), 0);
+		assertEquals(startGameController.sizeWaste(), sizeWaste);
+
+		
+	}
+	
 
 }
