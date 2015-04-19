@@ -14,27 +14,45 @@ public class MoveWasteToFoundationController {
 			
 					if (startGameController.getSizeWaste() == 0) return false;
 					
-					Card wasteCard = startGameController.oneCardFromWaste();
-										
+					Card wasteCard = startGameController.oneCardFromWaste();										
 					Stack<Card> foundationCard = startGameController.getFoundationCards(foundation);
-					if(foundationCard.size() > 0){
-						Card lastFoundationCard = foundationCard.peek();
-						if( (wasteCard.getCard() == lastFoundationCard.getCard() + 1) 
-								&& (wasteCard.getCardSuit() == lastFoundationCard.getCardSuit())){
-							startGameController.addCardToFoundation(foundation, wasteCard);
-							startGameController.removeCardFromWaste();
-							return true;
-						}
-					}
-					else 
-					if(wasteCard.getCard() == 1){
-						startGameController.addCardToFoundation(foundation, wasteCard);
-						startGameController.removeCardFromWaste();
+										
+					if(foundationCard.size() > 0)					
+						return foundationCardSizeGreatThanZero(foundation, foundationCard, wasteCard);
+					else
+						return foundationCardSizeLessThanZero(foundation, wasteCard);
+				
+			
+		}
+
+		public boolean foundationCardSizeGreatThanZero(int foundation, Stack<Card> foundationCard, Card wasteCard){
+
+					Card lastFoundationCard = foundationCard.peek();	
+					
+					if( (wasteCard.getCard() == lastFoundationCard.getCard() + 1) 
+							&& (wasteCard.getCardSuit() == lastFoundationCard.getCardSuit())){
+						addCardFoundationRemoveWaste(foundation, wasteCard);
 						return true;
+					}
+					return false;
+		
+		}
+		
+		
+		public boolean foundationCardSizeLessThanZero(int foundation, Card wasteCard){
+					if(wasteCard.getCard() == 1){
+							addCardFoundationRemoveWaste(foundation, wasteCard);
+							return true;
 					}
 					
 					return false;
-			
+		}
+		
+		
+		public void addCardFoundationRemoveWaste(int foundation, Card wasteCard)
+		{
+			startGameController.addCardToFoundation(foundation, wasteCard);
+			startGameController.removeCardFromWaste();
 		}
 	
 		
