@@ -17,7 +17,8 @@ public class MoveFromWasteToTableauController {
  		if( tableauCardEmptyAndWasteHasKCard(tableauCard)){
  					return moveToTableau(tableau);
  		}
- 		else if(tableauCard.size() > 0)
+ 		
+ 		if(tableauCard.size() > 0)
  					return tableauCardSizeGreatThanZero(tableau, tableauCard);		
  			 			
 		return false;
