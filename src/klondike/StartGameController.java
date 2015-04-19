@@ -11,18 +11,27 @@ public class StartGameController {
 	private static final int FOUNDATIONS = 4;
 	private ArrayList<Stack<Card>> stackFoundations;
 	private Stack<Card> stackWaste;
+	private ArrayList<Stack<Card>> stackTableaus;
 	
 	private int sizeDeck;
 	private int sizeWaste;
+	
 		
 	public StartGameController(){
 		
 			sizeDeck = SIZE_DECK;
 			sizeWaste = SIZE_WASTE;
 			stackFoundations = new ArrayList<Stack<Card>>(FOUNDATIONS);
+			stackTableaus = new ArrayList<Stack<Card>>(TABLEAUS);
+			
 			for(int i = 0; i < FOUNDATIONS; i++){
 						stackFoundations.add(new Stack<Card>());
 			}
+			
+			for(int i = 0; i < TABLEAUS; i++){
+						stackTableaus.add(new Stack<Card>());
+			}
+			
 			this.setStackWaste(new Stack<Card>());
 	}
 	
@@ -81,6 +90,11 @@ public class StartGameController {
 		}
 		return sizeTableaus;
 	}
+	
+	public void addCardToTableau(int tableau, Card card) {
+		stackTableaus.get(tableau).add(card);
+				
+	}
 
 
 	public void addCardToWaste(Card card) {
@@ -88,6 +102,8 @@ public class StartGameController {
 		sizeWaste = stackWaste.size();
 		
 	}
+	
+	
 	
 	public void removeCardFromWaste() {
 			stackWaste.pop();
@@ -109,7 +125,10 @@ public class StartGameController {
 		this.stackWaste = stackWaste;
 	}
 	
-	
+	public Stack<Card> getTableauCard(int tableau) {
+		return stackTableaus.get(tableau);
+	}
+
 
 
 }
