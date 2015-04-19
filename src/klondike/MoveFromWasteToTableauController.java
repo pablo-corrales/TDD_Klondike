@@ -14,7 +14,7 @@ public class MoveFromWasteToTableauController {
 	public boolean moveFromWasteToTableau(int tableau) {
 		this.wasteCard = startGameController.oneCardFromWaste();
 		Stack<Card> tableauCard = this.startGameController.getTableauCard(tableau);		
- 		if( (tableauCard.size() == 0) && (wasteCard.getCard() == 12)){
+ 		if( tableauCardEmptyAndWasteHasKCard(tableauCard)){
  					return moveToTableau(tableau);
  		}
  		else if(tableauCard.size() > 0)
@@ -23,11 +23,20 @@ public class MoveFromWasteToTableauController {
 		return false;
 	}
 	
+	public boolean tableauCardEmptyAndWasteHasKCard(Stack<Card> tableauCard){
+		
+		if( (tableauCard.size() == 0) && (wasteCard.getCard() == 12))
+				return true;
+				
+		return false;
+				
+	}
+		
+	
 		
 	public boolean tableauCardSizeGreatThanZero(int tableau, Stack<Card> tableauCard){
 			Card lastCardTableau = tableauCard.peek();
-			if(sameLastCardTableuAndWaste(lastCardTableau)
-					&&(sameColorLastCardWasteAndTableau(lastCardTableau))){
+			if(sameLastCardTableuAndWaste(lastCardTableau) && (sameColorLastCardWasteAndTableau(lastCardTableau))){
 				return moveToTableau(tableau);
 			}
 			

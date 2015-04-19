@@ -55,12 +55,5 @@ public class MoveWasteToFoundationControllerTest {
 	
 	 	}
 		
-		@Test
-	 	public void moveNoCardInWasteTest(){
-			// Se quiere mover a foundation sin tener cartas en waste
-									
-			assertFalse(moveWasteToFoundationController.move(FOUNDATION));
-	
-	 	}
-
+		
 }

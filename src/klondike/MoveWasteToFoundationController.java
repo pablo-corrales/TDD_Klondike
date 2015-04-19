@@ -4,34 +4,38 @@ import java.util.Stack;
 
 public class MoveWasteToFoundationController {
 		private StartGameController startGameController;
+		private Card wasteCard;
+		private int foundation;
 	
 		public MoveWasteToFoundationController(StartGameController startGameController)			
 		{
 			this.startGameController = startGameController;
+			
 		}
 
 		public boolean move(int foundation) {
+					this.wasteCard = startGameController.oneCardFromWaste();
 			
 					if (startGameController.getSizeWaste() == 0) return false;
+					this.foundation = foundation;
 					
-					Card wasteCard = startGameController.oneCardFromWaste();										
 					Stack<Card> foundationCard = startGameController.getFoundationCards(foundation);
 										
 					if(foundationCard.size() > 0)					
-						return foundationCardSizeGreatThanZero(foundation, foundationCard, wasteCard);
+						return foundationCardSizeGreatThanZero(foundationCard);
 					else
-						return foundationCardSizeLessThanZero(foundation, wasteCard);
+						return foundationCardSizeLessThanZero();
 				
 			
 		}
 
-		public boolean foundationCardSizeGreatThanZero(int foundation, Stack<Card> foundationCard, Card wasteCard){
+		public boolean foundationCardSizeGreatThanZero(Stack<Card> foundationCard){
 
 					Card lastFoundationCard = foundationCard.peek();	
 					
 					if( (wasteCard.getCard() == lastFoundationCard.getCard() + 1) 
 							&& (wasteCard.getCardSuit() == lastFoundationCard.getCardSuit())){
-						addCardFoundationRemoveWaste(foundation, wasteCard);
+						addCardFoundationRemoveWaste();
 						return true;
 					}
 					return false;
@@ -39,9 +43,9 @@ public class MoveWasteToFoundationController {
 		}
 		
 		
-		public boolean foundationCardSizeLessThanZero(int foundation, Card wasteCard){
+		public boolean foundationCardSizeLessThanZero(){
 					if(wasteCard.getCard() == 1){
-							addCardFoundationRemoveWaste(foundation, wasteCard);
+							addCardFoundationRemoveWaste();
 							return true;
 					}
 					
@@ -49,7 +53,7 @@ public class MoveWasteToFoundationController {
 		}
 		
 		
-		public void addCardFoundationRemoveWaste(int foundation, Card wasteCard)
+		public void addCardFoundationRemoveWaste()
 		{
 			startGameController.addCardToFoundation(foundation, wasteCard);
 			startGameController.removeCardFromWaste();
