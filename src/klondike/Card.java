@@ -2,7 +2,9 @@ package klondike;
 
 public class Card {
 	private int card;
-	CardSuit cardSuit;
+	private CardSuit cardSuit;
+	private Color colorCard;
+	
 	
 	public int getCard() {
 		return card;
@@ -19,15 +21,25 @@ public class Card {
 	public Card(int card, CardSuit cardSuit) {
 		this.card = card;
 		this.cardSuit = cardSuit;
+		this.colorCard =  ((cardSuit == CardSuit.SPADES) || (cardSuit == CardSuit.CLUBS)) ? Color.BLACK : Color.RED;
 	}
+					
 
 	public boolean uncovered() {
-		// TODO Auto-generated method stub
+		
 		return true;
 	}
 	
 	public CardSuit getCardSuit() {
 		return cardSuit;
+	}
+	
+	public Color getColorCard() {
+		return colorCard;
+	}
+
+	public void setColorCard(Color colorCard) {
+		this.colorCard = colorCard;
 	}
 
 	
